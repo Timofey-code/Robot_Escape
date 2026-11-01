@@ -35,7 +35,7 @@ level_2_platforms = [
     pygame.Rect(310, 150, 180, 20)
 ]
 
-# Level 3 Layout (Highly vertical complex grid)
+# Level 3 Layout 
 level_3_platforms = [
     floor,
     pygame.Rect(40, 360, 130, 20),
@@ -68,7 +68,7 @@ level_2_robots = [
     [pygame.Rect(580, 395, 30, 40), 0.6, (50, 255, 50), "Shover", 0, "Qwen"]  
 ]
 
-# Level 3 Boss Tier AI Configurations
+# Level 3 Boss 
 level_3_robots = [
     [pygame.Rect(0, 190, 30, 10), 4.0, (0, 255, 220), "Sweeper", 1, "Copilot"],      # Sweeps a platform back & forth
     [pygame.Rect(720, 400, 24, 24), 0.8, (255, 100, 0), "Boomer", 0, "Perplexity"],  # Speeds up as it gets close
@@ -113,10 +113,10 @@ saved_score = 0
 items_collected = 0  
 game_started = False
 game_over = False  
-game_won = False  # Track ultimate win state
+game_won = False  
 walk_frame = 0.0
 
-# Level-Aware Respawn Function
+
 def respawn_player():
     global player, robots, platforms, items_collected, player_vy, player_grounded, game_over, score, saved_score
     
@@ -166,7 +166,6 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 if not game_started or game_won:
-                    # Global full game reset architecture on restart request
                     current_level = 1
                     platforms = level_1_platforms
                     robots = level_1_robots
@@ -190,7 +189,7 @@ while True:
         screen.blit(instr_txt, (WIDTH // 2 - instr_txt.get_width() // 2, 300))
 
     elif game_won:
-        # ULTIMATE VICTORY END SCREEN WINDOW OVERLAY
+        # WINNNNNNNNNNNNNNN"!!!!!!!!!!!!!!1
         overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
         overlay.fill((10, 35, 20, 230))  # Emerald digital tint matrix filter
         screen.blit(overlay, (0, 0))
@@ -352,7 +351,7 @@ while True:
                 bot.y += bot_vy
                 bot_vy, bot_grounded = handle_y_collision(bot, bot_vy, platforms)
 
-            # Process high jumping mechanics for walking units
+            
             jump_threshold = 40 if current_level == 3 else 30
             if bot_grounded and (bot.x == old_x or player.y < bot.y - jump_threshold):
                 bot_vy = -12.5 if current_level == 3 else -11.0
@@ -364,7 +363,7 @@ while True:
 
 
 
-            # Enhanced level 3 vertical jumping trigger AI nodes
+           
             jump_threshold = 40 if current_level == 3 else 30
             if bot_grounded and (bot.x == old_x or player.y < bot.y - jump_threshold):
                 bot_vy = -12.5 if current_level == 3 else -11.0  # Bosses jump significantly higher!
